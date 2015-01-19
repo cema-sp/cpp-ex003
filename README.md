@@ -1,6 +1,11 @@
 # Example C++ Project #
 This C++ project is just example
 
+## Make commands ##
+
+* make - build main target (see $(TARGET));
+* make clean - clean build filed.
+
 ## Directory Structure ##
 
 * bin - for binary files (including tests);

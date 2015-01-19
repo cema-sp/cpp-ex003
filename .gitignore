@@ -1,7 +1,9 @@
 # Ignore build files:
-build/*
+build/**/*
 
 # Ignore compiled binaries and libraries:
 bin/*
-lib/*
+lib/**/*
 
+# Use .gitkeep
+!**/.gitkeep

@@ -30,5 +30,5 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 clean:
 	@echo " Cleaning... "
 	rm -rf $(TARGET)
-	rm -rf $(BUILDDIR)/*
-	rm -rf $(LIBDIR)/*
+	rm -rf $(BUILDDIR)/*!(*.gitkeep)
+	rm -rf $(LIBDIR)/*!(*.gitkeep)
