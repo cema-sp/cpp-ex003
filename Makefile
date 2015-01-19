@@ -29,6 +29,5 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 .PHONY: clean
 clean:
 	@echo " Cleaning... "
-	rm -rf $(TARGET)
-	rm -rf $(BUILDDIR)/*!(*.gitkeep)
-	rm -rf $(LIBDIR)/*!(*.gitkeep)
+	find $(TARGET) $(BUILDDIR) $(LIBDIR) -maxdepth 1 -type f ! -name '.gitkeep'\
+	 -delete
