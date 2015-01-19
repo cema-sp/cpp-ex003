@@ -1,10 +1,11 @@
-# Example C++ Project #
-This C++ project is just example
+# Tiny Rendered #
+Tiny renderer project from [habrahabr][1].  
+It uses [TGAImage] classes from [this][2] repository.
 
 ## Make commands ##
 
 * make - build main target (see $(TARGET));
-* make clean - clean build filed.
+* make clean - clean build files.
 
 ## Directory Structure ##
 
@@ -14,3 +15,7 @@ This C++ project is just example
 * lib - all compiled libs;
 * src - application source files;
 * test - tests.
+
+[1]: http://habrahabr.ru/post/248153/
+[2]: https://github.com/ssloy/tinyrenderer
+[TGAImage]: http://en.wikipedia.org/wiki/Truevision_TGA

@@ -17,13 +17,13 @@ INC := -I$(INCLUDEDIR)
 
 $(TARGET): $(OBJECTS)
 	@echo " Linking files... "
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $^
+	$(CXX) $(CXXFLAGS) $(INC) -o $(TARGET) $^
 	@echo " '$(TARGET)' ready "
 
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@mkdir -p $(BUILDDIR)
-	$(CXX) -c $(CXXFLAGS) -o $@ $<
+	$(CXX) -c $(CXXFLAGS) $(INC) -o $@ $<
 	@echo " Compiled "
 
 .PHONY: clean
