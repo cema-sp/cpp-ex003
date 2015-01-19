@@ -1,0 +1,7 @@
+# Ignore build files:
+build/*
+
+# Ignore compiled binaries and libraries:
+bin/*
+lib/*
+
