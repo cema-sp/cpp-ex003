@@ -1,11 +1,13 @@
 # Tiny Rendered #
 Tiny renderer project from [habrahabr][1].  
-It uses [TGAImage] classes from [this][2] repository.
+It uses [TGAImage], TGAColor, Model, Vec2, Vec3 classes 
+from [this][2] repository.
 
 ## Make commands ##
 
-* make - build main target (see $(TARGET));
-* make clean - clean build files.
+* make - build main target (see $(TARGET) in Makefile);
+* make test - build test target (see $(TEST) in Makefile);
+* make clean - clean build files and binaries.
 
 ## Directory Structure ##
 
