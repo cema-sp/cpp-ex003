@@ -5,5 +5,8 @@ build/*
 bin/*
 lib/*
 
-# Use .gitkeep
+# Ignore temporary files
+tmp/*
+
+# Use .gitkeep for keeping directory structure
 !**/.gitkeep
