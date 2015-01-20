@@ -11,7 +11,7 @@ int main()
   TGAImage image(100, 100, TGAImage::RGB);
   image.set(52, 41, red);
   image.flip_vertically();
-  image.write_tga_file("./output.tga");
+  image.write_tga_file("./tmp/output.tga");
 
   cout << "TGA Image Plotting Finished" << endl;
   return 0;
