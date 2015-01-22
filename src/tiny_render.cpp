@@ -7,54 +7,77 @@
 
 namespace tiny_render
 {
-  void line(int x0, int y0, int x1, int y1, TGAImage& image, const TGAColor& color)
+  std::vector<Vec2i> line(Vec2i from, Vec2i to)
   {
-    std::cout << "Line from (" << x0 << "; " << y0 << ") to (" << x1 << "; " << y1 << ")" << std::endl;
+    std::cout << "Line from " << from << " to " << to << std::endl;
     bool steep = false;
 
-    if (std::abs(x1 - x0) < std::abs(y1 - y0))
+    if (std::abs(to.x - from.x) < std::abs(to.y - from.y))
     {
-      std::swap(x0, y0);
-      std::swap(x1, y1);
+      std::swap(from.x, from.y);
+      std::swap(to.x, to.y);
       steep = true;
     }
 
-    if (x0 > x1)
+    if (from.x > to.x)
     {
-      std::swap(x0, x1);
-      std::swap(y0, y1);
+      std::swap(from, to);
     }
 
-    int dx = x1 - x0;
-    int dy = y1 - y0;
+    int dx = to.x - from.x;
+    int dy = to.y - from.y;
     int derror = std::abs(dy);
     int error = 0;
-    int y = y0;
+    int y = from.y;
+    std::vector<Vec2i> points(dx+1);
 
-    for (int x = x0; x <= x1; x++)
+    for (int x = from.x; x <= to.x; x++)
     {
       if (steep)
       {
-        image.set(y, x, color);
+
+        points[x-from.x] = Vec2i(y, x);
       }
       else
       {
-        image.set(x, y, color);
+        points[x-from.x] = Vec2i(x, y);
       }
 
       error += derror;
 
       if (2 * error > dx)
       {
-        y += (y1 > y0 ? 1 : -1);
+        y += (to.y > from.y ? 1 : -1);
         error -= dx;
       }
     }
+
+    return points;
   }
 
   void line(Vec2i from, Vec2i to, TGAImage& image, const TGAColor& color)
   {
-    line(from.x, from.y, to.x, to.y, image, color);
+    std::vector<Vec2i> points = line(from, to);
+    plot_points(points, image, color);
+  }
+
+  std::vector<Vec2i> line(int x0, int y0, int x1, int y1)
+  {
+    return line(Vec2i(x0, y0), Vec2i(x1, y1));
+  }
+
+  void line(int x0, int y0, int x1, int y1, TGAImage& image, const TGAColor& color)
+  {
+    std::vector<Vec2i> points = line(x0, y0, x1, y1);
+    plot_points(points, image, color);
+  }
+
+  void plot_points(std::vector<Vec2i> points, TGAImage& image, const TGAColor& color)
+  {
+    for (auto point: points)
+    {
+      image.set(point.x, point.y, color);
+    }
   }
 
   void triangle(Vec2i t0, Vec2i t1, Vec2i t2, TGAImage& image, const TGAColor& color)
@@ -62,6 +85,14 @@ namespace tiny_render
     line(t0, t1, image, color);
     line(t1, t2, image, color);
     line(t2, t0, image, color);
+  }
+
+  Vec2i triangle_center(const Vec2i& t0, const Vec2i& t1, const Vec2i& t2)
+  {
+    Vec2i c(0, 0);
+    float k = 1. / 3;
+    c = (t0 + t1 + t2) * k;
+    return c;
   }
 
   void plot_sun(TGAImage &image, TGAColor color)

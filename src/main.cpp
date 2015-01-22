@@ -34,6 +34,8 @@ int main()
       line(x0, y0, x1, y1, image, white);
     }
   }
+
+
   image.flip_vertically();
   image.write_tga_file(output_file_name);
   delete model;

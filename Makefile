@@ -33,7 +33,7 @@ all: $(TARGET)
 # Run `make test`
 test: $(TEST)
 
-.PHONY: $(TARGET)
+# .PHONY: $(TARGET)
 $(TARGET): $(OBJECTS)
 	@echo " Linking files... "
 	$(CXX) $(CXXFLAGS) $(INC) -o $(TARGET) $^
@@ -45,7 +45,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	$(CXX) -c $(CXXFLAGS) $(INC) -o $@ $<
 	@echo " Compiled "
 
-.PHONY: $(TEST)
+# .PHONY: $(TEST)
 $(TEST): $(TEST_OBJECTS)
 	@echo " Linking test files... "
 	$(CXX) $(CXXFLAGS) $(INC) -o $(TEST) $^
@@ -57,8 +57,8 @@ $(BUILDDIR)/%.o: $(TESTDIR)/%.$(SRCEXT)
 	$(CXX) -c $(CXXFLAGS) $(INC) -o $@ $<
 	@echo " Compiled tests "
 
-.PHONY: clean
 # Remove all files from $(TARGET) $(TEST) $(BUILDDIR) $(LIBDIR) except '.gitkeep'
+.PHONY: clean
 clean:
 	@echo " Cleaning... "
 	find $(TARGET) $(TEST) $(BUILDDIR) $(LIBDIR)\
